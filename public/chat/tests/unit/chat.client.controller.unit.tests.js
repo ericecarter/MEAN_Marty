@@ -61,7 +61,6 @@ describe('Testing Lobby Controller', function() {
 
             // Test the results
             expect(_scope.roomList).toEqualData(sampleRooms);
-            console.log(_scope.roomList);
         });
     }));
 
