@@ -1,12 +1,12 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
-// Configure the 'example' module routes
-angular.module('example').config(['$routeProvider',
+// Configure the 'homepage' module routes
+angular.module('homepage').config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
 		when('/', {
-			templateUrl: 'example/views/example.client.view.html'
+			templateUrl: 'homepage/views/homepage.client.view.html'
 		}).
 		otherwise({
 			redirectTo: '/'

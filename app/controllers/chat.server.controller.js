@@ -18,7 +18,12 @@ module.exports = function(io, socket) {
         message.username = socket.request.user.username;
 
         // Emit the 'chatMessage' event
-        io.emit('chatMessage', message);
+        io.in(message.currentRoom).emit('chatMessage', message);
+    });
+
+    // Handle a socket joining a room
+    socket.on('joinRoom', function(roomName){
+        socket.join(roomName);
     });
 
     // Emit the status event when a socket client is disconnected

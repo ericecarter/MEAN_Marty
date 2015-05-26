@@ -5,6 +5,7 @@
 module.exports = {
 	db: 'mongodb://localhost/mean-test',
 	sessionSecret: 'testSessionSecret',
+	viewEngine: 'ejs',
 	facebook: {
 		clientID: 'Facebook Application ID',
 		clientSecret: 'Facebook Application Secret',

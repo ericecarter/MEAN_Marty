@@ -5,8 +5,11 @@
 angular.module('chat').config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
-		when('/chat', {
+		when('/chat/room', {
 			templateUrl: 'chat/views/chat.client.view.html'
-		});
+		}).
+		when('/chat/lobby', {
+			templateUrl: 'chat/views/chat.client.lobby.html'
+			});
 	}
 ]); 

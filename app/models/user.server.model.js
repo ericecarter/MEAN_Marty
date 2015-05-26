@@ -48,7 +48,7 @@ var UserSchema = new Schema({
 		type: Date,
 		// Create a default 'created' value
 		default: Date.now
-	}
+	},
 });
 
 // Set the 'fullname' virtual property

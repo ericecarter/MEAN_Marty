@@ -1,5 +1,5 @@
 <!-- The chat view -->
-<section data-ng-controller="ChatController">
+<section data-ng-controller="ChatController" data-ng-init="findOne()">
 	<!-- List all messages -->
     <div data-ng-repeat="message in messages" data-ng-switch="message.type">
     	<!-- Make status messages bolder -->
@@ -20,6 +20,6 @@
     <!-- The message form -->
     <form ng-submit="sendMessage();">
         <input type="text" data-ng-model="messageText">
-        <input type="submit">
+        <button type="submit">Submit</button>
     </form>
 </section>
