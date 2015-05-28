@@ -5,15 +5,19 @@
 'use strict';
 
 // Create the 'lobby' controller
-angular.module('chat').controller('LobbyController', ['$scope', 'Socket', '$location', '$window', '$cookieStore', 'Rooms',
-    function($scope, Socket, $location, $window, $cookieStore, Rooms) {
+angular.module('chat').controller('LobbyController', ['$scope', '$route', '$timeout', 'Socket', '$location', '$window', '$cookieStore', 'Rooms',
+    function($scope, $route, $timeout, Socket, $location, $window, $cookieStore, Rooms) {
         // Create a room list array and query the database for current rooms
-        $scope.roomList = Rooms.query();
+        $timeout(function(){
+            $scope.roomList = Rooms.query();
+        }, 250);
+
+
 
         $scope.makeRoom = function(){
             // Create a new room
             var newRoom = new Rooms({
-                    roomName: "Room" + ($scope.roomList.length + 1),
+                    roomName: "Room" + Math.floor((Math.random() * 1000) + 1),
                     population: 1
                 });
             // Update the browser cookies
@@ -43,11 +47,15 @@ angular.module('chat').controller('LobbyController', ['$scope', 'Socket', '$loca
 
             // Update the database with the changes to the room
             room.$update({roomId: room._id}, function(){
-                // On success update the browser cookies
+                // On success update the browser cookies and go to chat
                 $cookieStore.put('currentRoomName', room.roomName);
                 $cookieStore.put('currentRoomId', room._id);
-            });
-            $location.path('/chat/room');
+                $location.path('/chat/room');
+            },
+                // On failure reload the page
+                $route.reload()
+            );
+
         };
     }
 ]);
