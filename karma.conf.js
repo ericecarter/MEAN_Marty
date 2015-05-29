@@ -13,9 +13,23 @@ module.exports = function(config) {
             'public/application.js',
             'public/*[!lib]*/*.js',
             'public/*[!lib]*/*[!tests]*/*.js',
-            'public/*[!lib]*/tests/unit/*.js'
+            'public/*[!lib]*/tests/unit/*.js',
+            '**/*.html'
         ],
-        reporters: ['progress'], browsers: ['PhantomJS'],
+        plugins : [
+            'karma-PhantomJS-launcher',
+            'karma-jasmine',
+            'karma-ng-html2js-preprocessor'
+        ],
+        preprocessors: {
+            '**/*.html': ["ng-html2js"]
+        },
+        ngHtml2JsPreprocessor: {
+            stripPrefix: 'public/',
+            moduleName: 'templates'
+        },
+        reporters: ['progress'],
+        browsers: ['PhantomJS'],
         captureTimeout: 60000,
         singleRun: true
     });

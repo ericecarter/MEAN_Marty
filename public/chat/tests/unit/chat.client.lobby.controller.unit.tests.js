@@ -8,7 +8,7 @@
 // Create the 'chat' module unit test suite
 describe('Testing Lobby Controller', function() {
     // Define global variables
-    var  _scope, LobbyController, roomService, roomServiceSpy;
+    var  $scope, $q, $rootScope, LobbyController;
 
     var mockRoomList = [
         {roomName: 'Room1',
@@ -18,23 +18,52 @@ describe('Testing Lobby Controller', function() {
     ]
 
     // Define a pre-tests function
-    beforeEach(module('mean'), function($provide){
-        roomServiceSpy = jasmine.createSpyObj('Rooms', ['query']);
-        roomServiceSpy.query.andReturn(mockRoomList);
-        $provide.value('Rooms', roomServiceSpy);
-    });
+    beforeEach(module('mean'));
 
-    beforeEach(inject(function(_$rootScope_, _$controller_, Rooms){
-        _scope = _$rootScope_.$new();
-        roomService = Rooms;
+    beforeEach(module('templates'));
 
-        LobbyController = _$controller_('LobbyController',{
-            '$scope': _scope,
-            'Rooms': roomService
-        })
+    beforeEach(inject(function(_$rootScope_, _$q_){
+        $q = _$q_;
+        $rootScope = _$rootScope_;
     }));
+
+    beforeEach(inject(function($controller){
+        $scope = $rootScope.$new();
+
+        // Add a new Jasmine matcher
+        jasmine.addMatchers({
+            toEqualData: function(util, customEqualityTesters) {
+                return {
+                    compare: function(actual, expected) {
+                        return {
+                            pass: angular.equals(actual, expected)
+                        };
+                    }
+                };
+            }
+        });
+
+        $controller('LobbyController', {
+            '$scope': $scope
+        });
+    }));
+
     describe('The Lobby Controller', function(){
-    it('should initialize the scope correctly', function(){
-        expect(_scope.roomsList).toBeDefined()
-    })})
+        it('should initialize the scope correctly', function(){
+            inject(function($httpBackend) {
+
+                // Define a request assertion
+                $httpBackend.expectGET('api/rooms').respond(mockRoomList);
+
+                // Call the controller's 'loadAvailableRooms' method
+                $scope.loadAvailableRooms();
+
+                // Flush the mock HTTP results
+                $httpBackend.flush();
+
+                // Test the results
+                expect($scope.roomList).toEqualData(mockRoomList);
+            })
+        })
+    })
 });

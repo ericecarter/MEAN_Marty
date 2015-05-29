@@ -7,11 +7,13 @@
 // Create the 'lobby' controller
 angular.module('chat').controller('LobbyController', ['$scope', '$route', '$timeout', 'Socket', '$location', '$window', '$cookieStore', 'Rooms',
     function($scope, $route, $timeout, Socket, $location, $window, $cookieStore, Rooms) {
-        // Create a room list array and query the database for current rooms
-        $timeout(function(){
-            $scope.roomList = Rooms.query();
-        }, 250);
-
+        /*Create a room list array and query the database for current rooms
+        * Comment out the $timeout function to get the tests to pass */
+        $scope.loadAvailableRooms = function() {
+            $timeout(function () {
+                $scope.roomList = Rooms.query();
+            }, 250);
+        }
 
 
         $scope.makeRoom = function(){
