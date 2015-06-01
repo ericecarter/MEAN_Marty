@@ -22,8 +22,6 @@ angular.module('chat').controller('LobbyController', ['$scope', '$route', '$time
                     roomName: "Room" + Math.floor((Math.random() * 1000) + 1),
                     population: 1
                 });
-            // Update the browser cookies
-            $cookies.put('currentRoomName', newRoom.roomName);
 
             // Emit a 'joinRoom' message event
             Socket.emit('joinRoom', newRoom.roomName);
@@ -34,10 +32,10 @@ angular.module('chat').controller('LobbyController', ['$scope', '$route', '$time
                 // On success take the user to the chat page
                 $location.path('/chat/room');
                 $cookies.put('currentRoomId', newRoom._id);
-            },function(errorResponse){
-                // Otherwise, present the user with the error message
-                $scope.error = errorResponse.data.message;
-            });
+            },
+                // On failure reload the page
+                $route.reload()
+            );
 
         };
 
@@ -52,8 +50,7 @@ angular.module('chat').controller('LobbyController', ['$scope', '$route', '$time
             // Update the database with the changes to the room
             room.$update({roomId: room._id}, function(){
                 // On success update the browser cookies and go to chat
-                    $cookies.put('currentRoomName', room.roomName);
-                    $cookies.put('currentRoomId', room._id);
+                $cookies.put('currentRoomId', room._id);
                 $location.path('/chat/room');
             },
                 // On failure reload the page

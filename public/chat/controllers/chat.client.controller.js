@@ -39,6 +39,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$timeout', 'Sock
 
         // Remove the event listener when the controller instance is destroyed
         $scope.$on('$destroy', function() {
+            // Before removing listener update the room the socket is in
             Socket.emit("updateRooms", $scope.currentRoom.roomName
             );
             Socket.removeListener('chatMessage');
