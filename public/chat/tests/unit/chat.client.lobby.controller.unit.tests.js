@@ -50,13 +50,16 @@ describe('Testing Lobby Controller', function() {
 
     describe('The Lobby Controller', function(){
         it('should initialize the scope correctly', function(){
-            inject(function($httpBackend) {
+            inject(function($httpBackend, $timeout) {
 
                 // Define a request assertion
                 $httpBackend.expectGET('api/rooms').respond(mockRoomList);
 
                 // Call the controller's 'loadAvailableRooms' method
                 $scope.loadAvailableRooms();
+
+                // Flush the queue of pending tasks
+                $timeout.flush();
 
                 // Flush the mock HTTP results
                 $httpBackend.flush();

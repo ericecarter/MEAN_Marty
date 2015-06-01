@@ -2,14 +2,14 @@
 'use strict';
 
 // Create the 'chat' controller
-angular.module('chat').controller('ChatController', ['$scope', '$timeout', 'Socket', '$cookieStore', 'Rooms',
-    function($scope, $timeout, Socket, $cookieStore, Rooms) {
+angular.module('chat').controller('ChatController', ['$scope', '$timeout', 'Socket', '$cookies', 'Rooms',
+    function($scope, $timeout, Socket, $cookies, Rooms) {
     	// Create a messages array
         $scope.messages = [];
 
         // Set up a response promise to get the current room from the database
         var response = Rooms.get({
-            roomId: $cookieStore.get('currentRoomId')
+            roomId: $cookies.get('currentRoomId')
         });
 
         // When the promise is resolved assign the current room to $scope
@@ -43,7 +43,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$timeout', 'Sock
 
             // Set up a response promise to get the current room from the database
             var response = Rooms.get({
-                roomId: $cookieStore.get('currentRoomId')
+                roomId: $cookies.get('currentRoomId')
             });
 
             // When the promise is resolved assign the current room to $scope

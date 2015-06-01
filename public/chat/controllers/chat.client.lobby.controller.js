@@ -5,10 +5,9 @@
 'use strict';
 
 // Create the 'lobby' controller
-angular.module('chat').controller('LobbyController', ['$scope', '$route', '$timeout', 'Socket', '$location', '$window', '$cookieStore', 'Rooms',
-    function($scope, $route, $timeout, Socket, $location, $window, $cookieStore, Rooms) {
-        /*Create a room list array and query the database for current rooms
-        * Comment out the $timeout function to get the tests to pass */
+angular.module('chat').controller('LobbyController', ['$scope', '$route', '$timeout', 'Socket', '$location', '$window', '$cookies', 'Rooms',
+    function($scope, $route, $timeout, Socket, $location, $window, $cookies, Rooms) {
+        //Create a room list array and query the database for current rooms
         $scope.loadAvailableRooms = function() {
             $timeout(function () {
                 $scope.roomList = Rooms.query();
@@ -23,7 +22,7 @@ angular.module('chat').controller('LobbyController', ['$scope', '$route', '$time
                     population: 1
                 });
             // Update the browser cookies
-            $cookieStore.put('currentRoomName', newRoom.roomName);
+            $cookies.put('currentRoomName', newRoom.roomName);
 
             // Emit a 'joinRoom' message event
             Socket.emit('joinRoom', newRoom.roomName);
@@ -33,7 +32,7 @@ angular.module('chat').controller('LobbyController', ['$scope', '$route', '$time
             newRoom.$save(function(){
                 // On success take the user to the chat page
                 $location.path('/chat/room');
-                $cookieStore.put('currentRoomId', newRoom._id);
+                $cookies.put('currentRoomId', newRoom._id);
             },function(errorResponse){
                 // Otherwise, present the user with the error message
                 $scope.error = errorResponse.data.message;
@@ -50,8 +49,8 @@ angular.module('chat').controller('LobbyController', ['$scope', '$route', '$time
             // Update the database with the changes to the room
             room.$update({roomId: room._id}, function(){
                 // On success update the browser cookies and go to chat
-                $cookieStore.put('currentRoomName', room.roomName);
-                $cookieStore.put('currentRoomId', room._id);
+                    $cookies.put('currentRoomName', room.roomName);
+                    $cookies.put('currentRoomId', room._id);
                 $location.path('/chat/room');
             },
                 // On failure reload the page
