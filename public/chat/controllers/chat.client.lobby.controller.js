@@ -7,7 +7,7 @@
 // Create the 'lobby' controller
 angular.module('chat').controller('LobbyController', ['$scope', '$route', '$timeout', 'Socket', '$location', '$window', '$cookies', 'Rooms',
     function($scope, $route, $timeout, Socket, $location, $window, $cookies, Rooms) {
-        //Create a room list array and query the database for current rooms
+        // Create a room list array and query the database for current rooms
         $scope.loadAvailableRooms = function() {
             $timeout(function () {
                 $scope.roomList = Rooms.query();
@@ -15,6 +15,7 @@ angular.module('chat').controller('LobbyController', ['$scope', '$route', '$time
         }
 
 
+        // Function to create a new room
         $scope.makeRoom = function(){
             // Create a new room
             var newRoom = new Rooms({
@@ -39,6 +40,8 @@ angular.module('chat').controller('LobbyController', ['$scope', '$route', '$time
             });
 
         };
+
+        // Function to join an existing room
         $scope.joinRoom = function (room){
             // Emit a 'joinRoom' message event
             Socket.emit('joinRoom', room.roomName);
@@ -58,5 +61,11 @@ angular.module('chat').controller('LobbyController', ['$scope', '$route', '$time
             );
 
         };
+
+        Socket.on('updateRooms', function(){
+            $timeout(function () {
+                $scope.roomList = Rooms.query();
+            }, 250);
+        });
     }
 ]);
