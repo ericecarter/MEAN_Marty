@@ -27,7 +27,7 @@ Protractor will need a working WebDriver server, to download and install a stand
 
 server enter the following into the command line: $ webdriver-manager update
 
-To run Protractor first start the server with: $ node start
+To run Protractor first start the server with: $ node server
 
 Then in another command line window enter: $ protractor
 
