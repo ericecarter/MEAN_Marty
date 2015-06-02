@@ -21,7 +21,7 @@ To run the Mocha tests Windows users enter: $ mocha --reporter spec app/tests
 
 To run the Karma tests Windows users enter: $ karma start
 
-To run the E2E's first install Protractor: Window users enter $ npm install -g protractor
+To run the E2E's, first install Protractor: Window users enter $ npm install -g protractor
 
 Protractor will need a working WebDriver server, to download and install a standalone Selenium
 
