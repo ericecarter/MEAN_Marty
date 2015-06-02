@@ -26,14 +26,22 @@ module.exports = function(grunt) {
                     watch: ['server.js', 'config/**/*.js', 'app/**/*.js']
                 }
             }
+        },
+        // Configure the mongo-drop task
+        'mongo-drop': {
+            options: {
+                dbname: 'mean-test',
+                host: 'localhost'
+            }
         }
     });
 
     // Load the external Grunt tasks
     grunt.loadNpmTasks('grunt-env');
     grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-mongo-drop-task');
 
     // Create the 'default' Grunt task
     grunt.registerTask('default', ['env:dev', 'nodemon']);
-
+    grunt.registerTask('drop', ['mongo-drop']);
 };

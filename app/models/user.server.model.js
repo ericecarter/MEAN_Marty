@@ -8,8 +8,12 @@ var mongoose = require('mongoose'),
 
 // Define a new 'UserSchema'
 var UserSchema = new Schema({
-	firstName: String,
-	lastName: String,
+	firstName: {type: String,
+				required: 'First name is required'
+	},
+	lastName: {	type: String,
+				required: 'Last name is required'
+	},
 	email: {
 		type: String,
 		// Validate the email format
@@ -30,7 +34,7 @@ var UserSchema = new Schema({
 		validate: [
 
 			function(password) {
-				return password && password.length > 6;
+				return password && password.length >= 6;
 			}, 'Password should be longer'
 		]
 	},
@@ -48,7 +52,7 @@ var UserSchema = new Schema({
 		type: Date,
 		// Create a default 'created' value
 		default: Date.now
-	},
+	}
 });
 
 // Set the 'fullname' virtual property
