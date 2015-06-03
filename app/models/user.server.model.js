@@ -16,6 +16,7 @@ var UserSchema = new Schema({
 	},
 	email: {
 		type: String,
+		required: 'Email address is required',
 		// Validate the email format
 		match: [/.+\@.+\..+/, "Please fill a valid email address"]
 	},
@@ -23,7 +24,7 @@ var UserSchema = new Schema({
 		type: String,
 		// Set a unique 'username' index
 		unique: true,
-		// Validate 'username' value existance
+		// Validate 'username' value existence
 		required: 'Username is required',
 		// Trim the 'username' field
 		trim: true
@@ -31,6 +32,7 @@ var UserSchema = new Schema({
 	password: {
 		type: String,
 		// Validate the 'password' value length
+		required:'Password is required',
 		validate: [
 
 			function(password) {
