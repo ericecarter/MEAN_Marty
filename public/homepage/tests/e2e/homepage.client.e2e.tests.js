@@ -117,7 +117,7 @@ describe('Homepage E2E Tests:', function() {
                 // Invalid email address error message should appear
                 expect(flash.getText()).toEqual('Please fill a valid email address');
             });
-            it('Should require a username address', function(){
+            it('Should require a username', function(){
                 // Fill-out some fields
                 firstName.sendKeys('John');
                 lastName.sendKeys('Doe');
@@ -171,7 +171,7 @@ describe('Homepage E2E Tests:', function() {
         })
     });
     // Test the sign-in functionality
-    describe('A returning user',function() {
+    describe('A Returning User',function() {
         var username, password, submit, flash;
         beforeEach(function () {
             // Load the Homepage
@@ -224,7 +224,7 @@ describe('Homepage E2E Tests:', function() {
                 // Get the flash error message div
                 flash = browser.driver.findElement(by.className('flash'));
 
-                // Password too short error message should appear
+                // Missing credentials error message should appear
                 expect(flash.getText()).toEqual('Missing credentials');
             });
             it('Should require a password', function () {
@@ -238,7 +238,7 @@ describe('Homepage E2E Tests:', function() {
                 // Get the flash error message div
                 flash = browser.driver.findElement(by.className('flash'));
 
-                // Password too short error message should appear
+                // Missing credentials error message should appear
                 expect(flash.getText()).toEqual('Missing credentials');
             });
             it('Should require a valid password', function () {
@@ -253,7 +253,7 @@ describe('Homepage E2E Tests:', function() {
                 // Get the flash error message div
                 flash = browser.driver.findElement(by.className('flash'));
 
-                // Password too short error message should appear
+                // Invalid password error message should appear
                 expect(flash.getText()).toEqual('Invalid password');
             });
             it('Should require a valid user', function () {
@@ -268,7 +268,7 @@ describe('Homepage E2E Tests:', function() {
                 // Get the flash error message div
                 flash = browser.driver.findElement(by.className('flash'));
 
-                // Password too short error message should appear
+                // Unknown user error message should appear
                 expect(flash.getText()).toEqual('Unknown user');
             })
         })
