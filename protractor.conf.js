@@ -3,5 +3,10 @@
  */
 
 exports.config = {
-    specs: ['public/*[!lib]*/tests/e2e/*.js']
+    specs: ['public/*[!lib]*/tests/e2e/*.js'],
+
+    jasmineNodeOpts: {
+        defaultTimeoutInterval: 60000,
+        showColors: true
+    }
 }

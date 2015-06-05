@@ -3,9 +3,9 @@
     <h1>LOBBY</h1>
     <button ng-click="makeRoom()">Create a New Room</button>
     <div data-ng-repeat="rooms in roomList">
-        <button ng-click="joinRoom(rooms)">Join This Room</button>
-        {{rooms.roomName}}
-        Number of people in this room:
-        {{rooms.population}}
+        <span><button class="joinBtn" ng-click="joinRoom(rooms)">Join This Room</button></span>
+        <span>{{rooms.roomName}}</span>
+        <span>Number of people in this room:
+        {{rooms.population}}</span>
     </div>
 </section>
