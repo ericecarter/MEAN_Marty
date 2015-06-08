@@ -2,10 +2,10 @@
 <section data-ng-controller="LobbyController" data-ng-init="loadAvailableRooms()">
     <h1>LOBBY</h1>
     <button ng-click="makeRoom()">Create a New Room</button>
-    <div data-ng-repeat="rooms in roomList">
-        <span><button class="joinBtn" ng-click="joinRoom(rooms)">Join This Room</button></span>
-        <span>{{rooms.roomName}}</span>
+    <div data-ng-repeat="room in roomList">
+        <span><button class="joinBtn" ng-click="joinRoom(room)">Join This Room</button></span>
+        <span>{{room.roomName}}</span>
         <span>Number of people in this room:
-        {{rooms.population}}</span>
+        {{room.population}}</span>
     </div>
 </section>

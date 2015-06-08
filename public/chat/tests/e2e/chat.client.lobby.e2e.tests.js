@@ -11,10 +11,11 @@ describe('Lobby Page E2E Tests:',function(){
     // This block is a hack because beforeAll() is not available
     // Using Jasmine 2.0 causes some locators to fail
     it('Signs Up 4 New Users', function(){
+        // Assign variable alphaBroswer to reference browser to allow uniform browser references
         alphaBrowser = browser;
+
         // Load the Homepage
         alphaBrowser.get('http://localhost:3000/#!/');
-
 
         // Create 4 new accounts
         // Click the sign-up link
@@ -28,6 +29,7 @@ describe('Lobby Page E2E Tests:',function(){
         alphaBrowser.driver.findElement(by.css('[type="submit"]')).click();
         alphaBrowser.element(by.linkText('Chat Lobby')).click();
 
+        // Fork creates a new browser window
         betaBrowser = browser.forkNewDriverInstance(true);
         // Click the sign-up link
         betaBrowser.element(by.linkText('Signup')).click();
