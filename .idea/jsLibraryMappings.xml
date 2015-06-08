@@ -2,6 +2,6 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{MEAN_Marty node_modules}" />
-    <file url="PROJECT" libraries="{angular-protractor-DefinitelyTyped, angularjs-DefinitelyTyped, ejs-locals-DefinitelyTyped, jasmine-DefinitelyTyped, karma-jasmine-DefinitelyTyped, mocha-DefinitelyTyped, mocha-phantomjs-DefinitelyTyped, selenium-webdriver-DefinitelyTyped, socket.io-DefinitelyTyped}" />
+    <file url="PROJECT" libraries="{angular-protractor-DefinitelyTyped, angularjs-DefinitelyTyped, ejs-locals-DefinitelyTyped, jasmine-DefinitelyTyped, karma-jasmine-DefinitelyTyped, mocha-DefinitelyTyped, mocha-phantomjs-DefinitelyTyped, mongodb-DefinitelyTyped, selenium-webdriver-DefinitelyTyped, should-DefinitelyTyped, socket.io-DefinitelyTyped}" />
   </component>
 </project>

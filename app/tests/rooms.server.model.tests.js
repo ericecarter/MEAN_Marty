@@ -15,7 +15,7 @@ describe('Room Model Unit Tests:', function() {
             firstName: 'Full',
             lastName: 'Name',
             displayName: 'Full Name',
-            email: 'test@ test.com',
+            email: 'test@test.com',
             username: 'username',
             password: 'password'
         });
@@ -51,11 +51,11 @@ describe('Room Model Unit Tests:', function() {
         });
         it('Should be able to find a single room without problems', function() {
             var query = Room.find({_id : room._id});
-            query.exec(function (err, ARoom) {
+            query.exec(function (err, aRoom) {
                 should.not.exist(err);
-                ARoom[0].should.be.an.Object;
-                ARoom[0].should.have.property('roomName', 'roomName');
-                ARoom[0].should.have.property('population', 1);
+                aRoom[0].should.be.an.Object;
+                aRoom[0].should.have.property('roomName', 'roomName');
+                aRoom[0].should.have.property('population', 1);
             })
         });
     });
