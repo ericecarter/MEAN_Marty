@@ -71,8 +71,6 @@ exports.signup = function(req, res, next) {
 	if (!req.user) {
 		// Create a new 'User' model instance
 		var user = new User(req.body);
-		var message = null;
-
 		// Set the user provider property
 		user.provider = 'local';
 

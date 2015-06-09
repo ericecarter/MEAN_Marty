@@ -5,7 +5,7 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
-// Create the 'chat' module unit test suite
+// Create the 'poker' module unit test suite
 describe('Testing the Lobby Controller', function() {
     // Define global variables
     var  $scope, $q, $rootScope, LobbyController, mockCookiesService, mockSocketService;

@@ -36,7 +36,7 @@ module.exports = function(server, io, mongoStore) {
 	
 	// Add an event listener to the 'connection' event
     io.on('connection', function(socket) {
-    	// Load the chat controller
-        require('../app/controllers/chat.server.controller')(io, socket);
+    	// Load the poker controller
+        require('../app/controllers/poker.server.controller.js')(io, socket);
     });
 };

@@ -4,7 +4,7 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
-// Create the 'chat' module Lobby page E2E test suite
+// Create the 'poker' module Lobby page E2E test suite
 describe('Lobby Page E2E Tests:',function(){
     var alphaBrowser, betaBrowser, gammaBrowser, deltaBrowser;
 
@@ -69,10 +69,10 @@ describe('Lobby Page E2E Tests:',function(){
 
 
         // All browsers are signed up and in the lobby
-        expect(alphaBrowser.getLocationAbsUrl()).toBe('/chat/lobby');
-        expect(betaBrowser.getLocationAbsUrl()).toBe('/chat/lobby');
-        expect(gammaBrowser.getLocationAbsUrl()).toBe('/chat/lobby');
-        expect(deltaBrowser.getLocationAbsUrl()).toBe('/chat/lobby');
+        expect(alphaBrowser.getLocationAbsUrl()).toBe('/poker/lobby');
+        expect(betaBrowser.getLocationAbsUrl()).toBe('/poker/lobby');
+        expect(gammaBrowser.getLocationAbsUrl()).toBe('/poker/lobby');
+        expect(deltaBrowser.getLocationAbsUrl()).toBe('/poker/lobby');
     });
 
 
@@ -87,7 +87,7 @@ describe('Lobby Page E2E Tests:',function(){
         // Alpha browser clicks create a new room
         alphaBrowser.element(by.buttonText('Create a New Room')).click();
         // Alpha browser is now in a room
-        expect(alphaBrowser.getLocationAbsUrl()).toBe('/chat/room');
+        expect(alphaBrowser.getLocationAbsUrl()).toBe('/poker/room');
 
         // The room lists in the other browsers are updated
         var betaLobbyRoomListRow0 = betaBrowser.element(by.repeater('rooms in roomList').row(0));
@@ -108,7 +108,7 @@ describe('Lobby Page E2E Tests:',function(){
         // Beta joins Alpha's room
         var betaLobbyRoomListRow0 = betaBrowser.element(by.repeater('rooms in roomList').row(0));
         betaLobbyRoomListRow0.element(by.buttonText('Join This Room')).click();
-        expect(betaBrowser.getLocationAbsUrl()).toBe('/chat/room');
+        expect(betaBrowser.getLocationAbsUrl()).toBe('/poker/room');
 
         // The room lists in the other browsers are updated
         var gammaLobbyRoomListRow0 = gammaBrowser.element(by.repeater('rooms in roomList').row(0));
@@ -126,7 +126,7 @@ describe('Lobby Page E2E Tests:',function(){
         // Gamma browser clicks create a new room
         gammaBrowser.element(by.buttonText('Create a New Room')).click();
         // Gamma browser is now in a room
-        expect(gammaBrowser.getLocationAbsUrl()).toBe('/chat/room');
+        expect(gammaBrowser.getLocationAbsUrl()).toBe('/poker/room');
 
         // The room lists in the other browser is updated
         var deltaLobbyRoomListRow0 = deltaBrowser.element(by.repeater('rooms in roomList').row(0));

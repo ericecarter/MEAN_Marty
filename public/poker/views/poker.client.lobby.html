@@ -1,6 +1,6 @@
 <!-- The lobby view -->
 <section data-ng-controller="LobbyController" data-ng-init="loadAvailableRooms()">
-    <h1>LOBBY</h1>
+    <h1>POKER LOBBY</h1>
     <button ng-click="makeRoom()">Create a New Room</button>
     <div data-ng-repeat="room in roomList">
         <span><button class="joinBtn" ng-click="joinRoom(room)">Join This Room</button></span>

@@ -2,7 +2,7 @@
 'use strict';
 
 // Create the Socket.io wrapper service
-angular.module('chat').service('Socket', ['Authentication', '$location', '$timeout',
+angular.module('poker').service('Socket', ['Authentication', '$location', '$timeout',
     function(Authentication, $location, $timeout) {
     	// Connect to the Socket.io server only when authenticate
         if (Authentication.user) {

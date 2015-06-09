@@ -1,8 +1,8 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
-// Create the 'chat' controller
-angular.module('chat').controller('ChatController', ['$scope', '$timeout', 'Socket', '$cookies', 'Rooms',
+// Create the 'poker' controller
+angular.module('poker').controller('ChatController', ['$scope', '$timeout', 'Socket', '$cookies', 'Rooms',
     function($scope, $timeout, Socket, $cookies, Rooms) {
     	// Create a messages array
         $scope.messages = [];

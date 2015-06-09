@@ -5,7 +5,7 @@
 'use strict';
 
 // Create the 'lobby' controller
-angular.module('chat').controller('LobbyController', ['$scope', '$route', '$timeout', 'Socket', '$location', '$window', '$cookies', 'Rooms',
+angular.module('poker').controller('LobbyController', ['$scope', '$route', '$timeout', 'Socket', '$location', '$window', '$cookies', 'Rooms',
     function($scope, $route, $timeout, Socket, $location, $window, $cookies, Rooms) {
         // Create a room list array and query the database for current rooms
         $scope.loadAvailableRooms = function() {
@@ -29,8 +29,8 @@ angular.module('chat').controller('LobbyController', ['$scope', '$route', '$time
 
             // Update the database with the new room
             newRoom.$save(function(){
-                // On success take the user to the chat page
-                $location.path('/chat/room');
+                // On success take the user to the poker page
+                $location.path('/poker/room');
                 $cookies.put('currentRoomId', newRoom._id);
             },
                 // On failure reload the page
@@ -49,9 +49,9 @@ angular.module('chat').controller('LobbyController', ['$scope', '$route', '$time
 
             // Update the database with the changes to the room
             room.$update({roomId: room._id}, function(){
-                // On success update the browser cookies and go to chat
+                // On success update the browser cookies and go to poker
                 $cookies.put('currentRoomId', room._id);
-                $location.path('/chat/room');
+                $location.path('/poker/room');
             },
                 // On failure reload the page
                 $route.reload()

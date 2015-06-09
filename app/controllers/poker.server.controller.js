@@ -1,7 +1,7 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
-// Create the chat configuration
+// Create the poker configuration
 module.exports = function(io, socket) {
 	// Emit the status event when a new socket client is connected
     io.emit('chatMessage', {
@@ -11,7 +11,7 @@ module.exports = function(io, socket) {
         username: socket.request.user.username
     });
 
-    // Send a chat messages to all connected sockets when a message is received 
+    // Send a poker messages to all connected sockets when a message is received
     socket.on('chatMessage', function(message) {
         message.type = 'message';
         message.created = Date.now();
