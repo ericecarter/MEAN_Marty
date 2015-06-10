@@ -1,11 +1,15 @@
 <!-- The lobby view -->
 <section data-ng-controller="LobbyController" data-ng-init="loadAvailableRooms()">
-    <h1>POKER LOBBY</h1>
-    <button ng-click="makeRoom()">Create a New Room</button>
-    <div data-ng-repeat="room in roomList">
-        <span><button class="joinBtn" ng-click="joinRoom(room)">Join This Room</button></span>
-        <span>{{room.roomName}}</span>
-        <span>Number of people in this room:
-        {{room.population}}</span>
+    <div class="lobbyContainer">
+        <div class="lobbyHeading">POKER LOBBY</div>
+        <button class="myButton" ng-click="makeRoom()">Create a New Room</button>
+        <div class="roomListing" data-ng-repeat="room in roomList">
+            <span class="roomListingBorder">
+                <span><button class="joinBtn" ng-click="joinRoom(room)">Join This Room</button></span>
+                <span class="roomName">{{room.roomName}}</span><span>|</span>
+                <span>Number of people in this room:
+                {{room.population}}</span>
+            </span>
+        </div>
     </div>
 </section>

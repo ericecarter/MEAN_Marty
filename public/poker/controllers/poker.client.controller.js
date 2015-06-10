@@ -2,7 +2,7 @@
 'use strict';
 
 // Create the 'poker' controller
-angular.module('poker').controller('ChatController', ['$scope', '$timeout', 'Socket', '$cookies', 'Rooms',
+angular.module('poker').controller('PokerController', ['$scope', '$timeout', 'Socket', '$cookies', 'Rooms',
     function($scope, $timeout, Socket, $cookies, Rooms) {
     	// Create a messages array
         $scope.messages = [];

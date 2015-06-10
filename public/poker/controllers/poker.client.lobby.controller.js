@@ -12,8 +12,7 @@ angular.module('poker').controller('LobbyController', ['$scope', '$route', '$tim
             $timeout(function () {
                 $scope.roomList = Rooms.query();
             }, 250);
-        }
-
+        };
 
         // Function to create a new room
         $scope.makeRoom = function(){
@@ -25,7 +24,6 @@ angular.module('poker').controller('LobbyController', ['$scope', '$route', '$tim
 
             // Emit a 'joinRoom' message event
             Socket.emit('joinRoom', newRoom.roomName);
-
 
             // Update the database with the new room
             newRoom.$save(function(){
