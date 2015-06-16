@@ -3,6 +3,8 @@
 
 // Create the poker configuration
 module.exports = function(io, socket) {
+    //_ = require('underscore');
+
 	// Emit the status event when a new socket client is connected
     io.emit('chatMessage', {
         type: 'status',

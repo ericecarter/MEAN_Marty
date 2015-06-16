@@ -61,7 +61,6 @@ angular.module('poker').controller('PokerController', ['$scope', '$timeout', 'So
                     $scope.currentRoom.$remove({roomId: $scope.currentRoom._id});
                 }
             })
-        })
-
+        });
     }
 ]); 
