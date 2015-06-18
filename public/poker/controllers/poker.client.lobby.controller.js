@@ -22,11 +22,10 @@ angular.module('poker').controller('LobbyController', ['$scope', '$route', '$tim
                     population: 1
                 });
 
-            // Emit a 'joinRoom' message event
-            Socket.emit('joinRoom', newRoom.roomName);
-
             // Update the database with the new room
             newRoom.$save(function(){
+                // Emit a 'joinRoom' message event
+                Socket.emit('joinRoom', {roomName: newRoom.roomName, roomId: newRoom._id});
                 // On success take the user to the poker page
                 $location.path('/poker/room');
                 $cookies.put('currentRoomId', newRoom._id);
@@ -40,7 +39,7 @@ angular.module('poker').controller('LobbyController', ['$scope', '$route', '$tim
         // Function to join an existing room
         $scope.joinRoom = function (room){
             // Emit a 'joinRoom' message event
-            Socket.emit('joinRoom', room.roomName);
+            Socket.emit('joinRoom', {roomName: room.roomName, roomId: room._id});
 
             // Add 1 to the room's population
             room.population++;
@@ -54,9 +53,9 @@ angular.module('poker').controller('LobbyController', ['$scope', '$route', '$tim
                 // On failure reload the page
                 $route.reload()
             );
-
         };
 
+        // Update the roomList upon 'updateRooms' event
         Socket.on('updateRooms', function(){
             $timeout(function () {
                 $scope.roomList = Rooms.query();

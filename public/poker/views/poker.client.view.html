@@ -1,16 +1,19 @@
 <!-- The poker view -->
 <section data-ng-controller="PokerController">
-    <div class = "tableBackground"><div class="table"></div></div>
+    <div class = "tableBackground">
+        <div class="table"></div>
+    </div>
 
 	<!-- List all messages -->
     <div class ="chatText" scroll-glue>
         <ul>
-            <li class="list-unstyled" data-ng-repeat="message in messages track by $index"  autoscroll><strong>{{ message.username }}</strong>: {{ message.text }}</li>
+            <li class="list-unstyled" data-ng-repeat="message in messages track by $index"><strong>{{ message.username }}</strong>: {{ message.text }}</li>
         </ul>
     </div>
     <!-- The message form -->
     <form class = "chatSubmit" ng-submit="sendMessage();">
         <input type="text" data-ng-model="messageText">
-        <button type="submit">Submit</button>
+        <button type="submit">SEND</button>
+        <span>Input text here to chat</span>
     </form>
 </section>

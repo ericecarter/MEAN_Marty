@@ -3,17 +3,10 @@
 
 // Create the poker configuration
 module.exports = function(io, socket) {
-    //_ = require('underscore');
+    var mongoose = require('mongoose'),
+        Room = mongoose.model('Room');
 
-	// Emit the status event when a new socket client is connected
-    io.emit('chatMessage', {
-        type: 'status',
-        text: 'connected',
-        created: Date.now(),
-        username: socket.request.user.username
-    });
-
-    // Send a poker messages to all connected sockets when a message is received
+    // Send a chat messages to all connected sockets in a room when a message is received
     socket.on('chatMessage', function(message) {
         message.type = 'message';
         message.created = Date.now();
@@ -24,8 +17,9 @@ module.exports = function(io, socket) {
     });
 
     // Handle a socket joining a room
-    socket.on('joinRoom', function(roomName){
-        socket.join(roomName);
+    socket.on('joinRoom', function(data){
+        socket.join(data.roomName);
+        socket.currentRoomId = data.roomId;
         io.emit('updateRooms');
     });
 
@@ -37,11 +31,19 @@ module.exports = function(io, socket) {
 
     // Emit the status event when a socket client is disconnected
     socket.on('disconnect', function() {
-        io.emit('chatMessage', {
-            type: 'status',
-            text: 'disconnected',
-            created: Date.now(),
-            username: socket.request.user.username
+        Room.findById(socket.currentRoomId).exec(function(err, room){
+            // If we've actually found the current room
+            if(null !== room) {
+                // decrease the population by one
+                room.population--;
+                // And update the current room
+                if (room.population > 0) {
+                    room.save();
+                }
+                else {
+                    room.remove();
+                }
+            }
         });
     });
 };
